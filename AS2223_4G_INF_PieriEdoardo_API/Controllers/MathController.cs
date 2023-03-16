@@ -54,7 +54,7 @@ namespace AS2223_4G_INF_PieriEdoardo_API.Controllers
                 sol2 = 0;
                 nSoluzioni = 0;
                 status = "OK";
-                tipoParabola = "";
+                tipoParabola = "impossibile calcolare le radici";
             } else if(d >= 0)   //se ha una o due soluzioni (nSoluzioni indica il numero di soluzioni)
             {
                 sol1 = ((b * -1) + Math.Sqrt(d)) / (a * 2);
@@ -62,6 +62,7 @@ namespace AS2223_4G_INF_PieriEdoardo_API.Controllers
                 if (sol1 == sol2) nSoluzioni = 1;
                 else nSoluzioni = 2;
                 if (a > 0) tipoParabola = "convessa";
+                else if (d == 0) tipoParabola = "due radici coincidenti";
                 else tipoParabola = "concava";
                 status = "OK";
             } else
@@ -73,6 +74,12 @@ namespace AS2223_4G_INF_PieriEdoardo_API.Controllers
                 nSoluzioni = 0;
             }
             return Json(new { sol1, sol2, status, tipoParabola, a, b, c, nSoluzioni});
+        }
+        [HttpGet("CalcolaAliquota")]
+        public JsonResult CalcolaAliquota(int reddito)
+        {
+            string output;
+            if(reddito >= 35000) { }
         }
     }
 }
