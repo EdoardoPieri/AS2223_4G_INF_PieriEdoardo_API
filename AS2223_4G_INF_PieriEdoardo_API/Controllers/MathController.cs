@@ -28,5 +28,17 @@ namespace AS2223_4G_INF_PieriEdoardo_API.Controllers
             }
             return Json(new {output, status });
         }
+        [HttpGet("Fattoriale")]
+        public JsonResult Fattoriale(int num)
+        {
+            int output = 1;
+            string status;
+            for(int c = num; c > 1; c--)
+            {
+                output = output * c;
+            }
+            status = "OK";
+            return Json(new {output, status});
+        }
     }
 }
