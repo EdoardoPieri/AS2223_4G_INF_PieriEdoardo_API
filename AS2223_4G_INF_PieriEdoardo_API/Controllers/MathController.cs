@@ -78,8 +78,28 @@ namespace AS2223_4G_INF_PieriEdoardo_API.Controllers
         [HttpGet("CalcolaAliquota")]
         public JsonResult CalcolaAliquota(int reddito)
         {
-            string output;
-            if(reddito >= 35000) { }
+            int redditoMin;
+            double output;
+            string status = "OK";
+            if (reddito > 35000)
+            {
+                redditoMin = reddito - 35000;
+                output = (35000 * 0.12) + (redditoMin * 0.28);
+            }
+            else if (reddito == 35000)
+            {
+                output = reddito * 0.28;
+            }
+            else if (reddito < 35000)
+            {
+                output = reddito * 0.12;
+            }
+            else
+            {
+                status = "KO";
+                output = 0;
+            }
+            return Json(new { output, status });
         }
     }
 }
